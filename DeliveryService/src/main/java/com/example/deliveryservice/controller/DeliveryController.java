@@ -18,12 +18,12 @@ public class DeliveryController {
 
     @PostMapping("/registerAddress")
     public UserAddressResponse registerAddress(@RequestBody RegisterAddressDTO dto) {
-        return new UserAddressResponse(deliveryService.addUserAddress(dto.getUserId(), dto.getAddress(), dto.getAlias()));
+        return new UserAddressResponse(deliveryService.addUserAddress(dto.userId(), dto.address(), dto.alias()));
     }
 
     @PostMapping("/process")
     public DeliveryResponse processDelivery(@RequestBody ProcessDeliveryDTO dto) {
-        return new DeliveryResponse(deliveryService.processDelivery(dto.getOrderId(), dto.getProductName(), dto.getProductCount(), dto.getAddress()));
+        return new DeliveryResponse(deliveryService.processDelivery(dto.orderId(), dto.productName(), dto.productCount(), dto.address()));
     }
 
     @GetMapping("/{deliveryId}")

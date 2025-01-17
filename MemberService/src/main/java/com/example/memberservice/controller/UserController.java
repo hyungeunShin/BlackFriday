@@ -15,12 +15,12 @@ public class UserController {
 
     @PostMapping("/register")
     public UserResponse registerUser(@RequestBody RegisterUserDTO dto) {
-        return new UserResponse(userService.registerUser(dto.getEmail(), dto.getName()));
+        return new UserResponse(userService.registerUser(dto.email(), dto.name()));
     }
 
     @PutMapping("/{id}/modify")
     public UserResponse modifyUser(@PathVariable("id") Long id, @RequestBody ModifyUserDTO dto) {
-        return new UserResponse(userService.modifyUser(id, dto.getName()));
+        return new UserResponse(userService.modifyUser(id, dto.name()));
     }
 
     @GetMapping("/login")

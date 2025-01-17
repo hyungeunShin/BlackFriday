@@ -18,12 +18,12 @@ public class PaymentController {
 
     @PostMapping("/registerMethod")
     public PaymentMethodResponse registerPaymentMethod(@RequestBody RegisterPaymentMethodDTO dto) {
-        return new PaymentMethodResponse(paymentService.registerPaymentMethod(dto.getUserId(), dto.getPaymentMethodType(), dto.getCreditCardNumber()));
+        return new PaymentMethodResponse(paymentService.registerPaymentMethod(dto.userId(), dto.paymentMethodType(), dto.creditCardNumber()));
     }
 
     @PostMapping("/process")
     public PaymentResponse processPayment(@RequestBody ProcessPaymentDTO dto) {
-        return new PaymentResponse(paymentService.processPayment(dto.getUserId(), dto.getOrderId(), dto.getAmountKRW(), dto.getPaymentMethodId()));
+        return new PaymentResponse(paymentService.processPayment(dto.userId(), dto.orderId(), dto.amountKRW(), dto.paymentMethodId()));
     }
 
     @GetMapping("/{userId}/paymentMethod")
