@@ -4,7 +4,7 @@ spring:
 
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/my_db?useSSL=false&allowPublicKeyRetrieval=true
+    url: jdbc:mysql://mysql-server:3306/my_db?useSSL=false&allowPublicKeyRetrieval=true
     username: root
     password: 1234
 
@@ -16,3 +16,17 @@ spring:
 #    properties:
 #      hibernate:
 #        format_sql: true
+
+  kafka:
+    bootstrap-servers:
+      - kafka1:9092
+      - kafka2:9092
+      - kafka3:9092
+    consumer:
+      group-id: testgroup
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.ByteArrayDeserializer
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.ByteArraySerializer

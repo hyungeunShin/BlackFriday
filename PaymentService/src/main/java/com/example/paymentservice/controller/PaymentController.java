@@ -26,9 +26,14 @@ public class PaymentController {
         return new PaymentResponse(paymentService.processPayment(dto.userId(), dto.orderId(), dto.amountKRW(), dto.paymentMethodId()));
     }
 
-    @GetMapping("/{userId}/paymentMethod")
+    @GetMapping("/users/{userId}/paymentMethod")
     public List<PaymentMethodResponse> getPaymentMethod(@PathVariable("userId") Long userId) {
         return paymentService.getPaymentMethod(userId).stream().map(PaymentMethodResponse::new).toList();
+    }
+
+    @GetMapping("/users/{userId}/paymentMethod/first-method")
+    public PaymentMethodResponse getPaymentMethodFirst(@PathVariable("userId") Long userId) {
+        return paymentService.getPaymentMethod(userId).stream().findFirst().map(PaymentMethodResponse::new).orElseThrow();
     }
 
     @GetMapping("/{paymentId}")

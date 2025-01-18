@@ -40,4 +40,9 @@ public class DeliveryController {
     public List<UserAddressResponse> getUserAddress(@PathVariable("userId") Long userId) {
         return deliveryService.getUserAddress(userId).stream().map(UserAddressResponse::new).toList();
     }
+
+    @GetMapping("/address/users/{userId}/first-address")
+    public UserAddressResponse getUserAddressFirst(@PathVariable("userId") Long userId) {
+        return deliveryService.getUserAddress(userId).stream().findFirst().map(UserAddressResponse::new).orElseThrow();
+    }
 }
